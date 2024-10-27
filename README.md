@@ -55,3 +55,18 @@ If you encounter issues running the application with Docker, you can run the bac
    ```
    Access the backend at ```http://localhost:8000.```
 
+### Running the Frontend
+1. Navigate to the front directory:
+   ```
+   cd frontend
+   ```
+
+2. Install the required Node.js packages:
+   ```
+   npm install
+   ```
+3. Run the Vue application:
+   ```
+   npm run server
+   ```
+
