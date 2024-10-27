@@ -70,3 +70,11 @@ If you encounter issues running the application with Docker, you can run the bac
    npm run server
    ```
 
+## Usage
+1. File Upload:
+   -- Open the frontend application.
+   -- Select a file in .csv or .xlsx format.
+   -- Click "Upload" to send the file to the backend for processing.
+   -- After successful upload, the data will be displayed on the frontend.
+
+
