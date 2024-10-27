@@ -13,17 +13,17 @@ app = FastAPI()
 
 # กำหนดค่า CORS
 origins = [
-    "http://localhost:5173",  # เพิ่ม URL ของ frontend ที่คุณใช้
-    "http://127.0.0.1:5173",  # ถ้าคุณใช้ localhost
-    "http://localhost:8080",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:8080", 
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # อนุญาตโดเมนเหล่านี้
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],  # อนุญาตวิธีการ HTTP ทั้งหมด
-    allow_headers=["*"],  # อนุญาต headers ทั้งหมด
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 class JsonData(BaseModel):
@@ -58,8 +58,6 @@ async def upload_file(file: UploadFile = File(...)):
 
         # Convert Data to JSON
         json_data = json.loads(df.to_json(orient='split'))
-        print(json_data)
-        
         return JSONResponse(content={"data": json_data}, status_code=200)
 
     except pd.errors.EmptyDataError:
@@ -72,29 +70,28 @@ async def upload_file(file: UploadFile = File(...)):
 
 @app.post("/downloadfile/")
 async def download_file(json_data: JsonData):
+    print(json_data.data)
     try:
         # Validate JSON data structure
         if not json_data or not json_data.data:
             raise HTTPException(status_code=400, detail="Invalid request body")
 
-        # Check if 'index', 'columns', and 'data' keys exist in json_data
         required_keys = {'index', 'columns', 'data'}
         if not required_keys.issubset(json_data.data):
             raise HTTPException(status_code=400, detail="Missing 'index', 'columns', or 'data' in the request body")
 
         # Convert JSON to DataFrame
         df = pd.DataFrame(data=json_data.data['data'], columns=json_data.data['columns'])
+        print(df)
 
         # Create Excel file in output directory
-        os.makedirs(output_directory, exist_ok=True)  # Ensure output directory exists
+        os.makedirs(output_directory, exist_ok=True)
         
-        # Determine unique file name
         base_filename = "output.xlsx"
         file_path = os.path.join(output_directory, base_filename)
         counter = 1
 
         while os.path.exists(file_path):
-            # Create a new file name with a counter
             file_path = os.path.join(output_directory, f"output_{counter}.xlsx")
             counter += 1
             
@@ -107,11 +104,11 @@ async def download_file(json_data: JsonData):
         style_header(sheet)
         style_body(sheet)
 
-        # Save styled workbook
         workbook.save(file_path)
+        
+        print(f"File saved to: {file_path}")
 
-        # Send Excel file to download
-        return FileResponse(file_path, filename="output.xlsx", media_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        return FileResponse(file_path, filename=os.path.basename(file_path), media_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
 
     except KeyError as e:
         raise HTTPException(status_code=400, detail=f"Missing key: {str(e)}")

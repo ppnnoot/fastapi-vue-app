@@ -1,6 +1,7 @@
 <script>
 import axios from "axios";
 
+
 export default {
   name: "ManageParts",
   data() {
@@ -41,6 +42,7 @@ export default {
         "http://127.0.0.1:80/uploadfile/",
         "http://localhost:8000/uploadfile/",
       ];
+
       let response;
 
       for (const url of uploadUrls) {
@@ -74,6 +76,7 @@ export default {
       // Check if there's data to download
       if (!this.partData.data.length) {
         this.uploadMessage = "No data to download.";
+        alert("No data to download!");
         return;
       }
 
@@ -90,12 +93,12 @@ export default {
       ];
       const indexColumnData = this.partData.data.map((_, index) => index);
 
-      // Prepare data ensuring all rows have the same length
+
       const data = this.partData.data.map((row) => {
-        // Ensure the length of each row matches the column data
-        const adjustedRow = [...row]; // Copy the original row
+
+        const adjustedRow = [...row]; 
         while (adjustedRow.length < columnData.length - 1) {
-          adjustedRow.push(0); // Fill missing columns with 0
+          adjustedRow.push(0); 
         }
         return adjustedRow;
       });
@@ -111,10 +114,12 @@ export default {
       // Sending data to the backend
       try {
         const response = await axios.post(
-          "http://0.0.0.0/downloadfile/",
+          "http://localhost:8000/downloadfile/",
           jsonData
         );
+        console.log(response.data);
         this.uploadMessage = "File downloaded successfully!";
+        alert("Download file successful!");
       } catch (error) {
         console.error(
           "Error sending data:",
