@@ -52,7 +52,6 @@ If you encounter issues running the application with Docker, you can run the bac
    ```
    uvicorn main:app
    ```
-   Access the backend at ```http://localhost:8000.```
 
 ### Running the Frontend
 1. Navigate to the front directory:
