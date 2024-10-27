@@ -1,11 +1,15 @@
-# Use the official FastAPI image
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
+FROM python:3.9
 
 WORKDIR /app
 
-# Install dependencies
-COPY ./requirements.txt /app/requirements.txt
-RUN pip install -r /app/requirements.txt
+# Copy the requirements file first to leverage Docker's caching mechanism
+COPY requirements.txt .
 
-# Copy project
-COPY . /app
+# Install the dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application files
+COPY . .
+
+# Run the application
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
