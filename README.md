@@ -65,7 +65,7 @@ If you encounter issues running the application with Docker, you can run the bac
    ```
 3. Run the Vue application:
    ```
-   npm run server
+   npm run dev
    ```
 
 ## Usage
