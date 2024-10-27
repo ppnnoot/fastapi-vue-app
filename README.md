@@ -37,4 +37,12 @@ This project is a full-stack application using FastAPI for the backend and Vue.j
 ### Running Backend and Frontend Without Docker
 If you encounter issues running the application with Docker, you can run the backend and frontend independently.
 
-###Running the Backend
+### Running the Backend
+
+1. **Navigate to the backend directory:
+
+2. **Install the required Python packages:
+
+3. **Run the FastAPI application:
+   -- Access the backend at http://localhost:8000.
+
