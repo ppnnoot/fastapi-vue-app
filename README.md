@@ -26,8 +26,8 @@ This project is a full-stack application using FastAPI for the backend and Vue.j
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/your-repo.git
-   cd your-repo
+   git clone https://github.com/ppnnoot/fastapi-vue-app.git
+   cd fastapi-vue-app
    ```
 2. Start the Application: Run the following command to build and start the services:
    ```
