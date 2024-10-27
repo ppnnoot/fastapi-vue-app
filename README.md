@@ -34,7 +34,7 @@ This project is a full-stack application using FastAPI for the backend and Vue.j
    docker-compose up --build
    ```
 
-### Running Backend and Frontend Without Docker
+## Running Backend and Frontend Without Docker
 If you encounter issues running the application with Docker, you can run the backend and frontend independently.
 
 ### Running the Backend
