@@ -50,7 +50,7 @@ If you encounter issues running the application with Docker, you can run the bac
 
 3. Run the FastAPI application:
    ```
-   uvicorn main:app --host 0.0.0.0 --port 8000
+   uvicorn main:app
    ```
    Access the backend at ```http://localhost:8000.```
 
