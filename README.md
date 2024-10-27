@@ -39,10 +39,19 @@ If you encounter issues running the application with Docker, you can run the bac
 
 ### Running the Backend
 
-1. **Navigate to the backend directory:
+1. Navigate to the backend directory:
+   ```
+   cd backend
+   ```
 
-2. **Install the required Python packages:
+3. Install the required Python packages:
+   ```
+   pip install -r requirements.txt
+   ```
 
-3. **Run the FastAPI application:
-   -- Access the backend at http://localhost:8000.
+4. **Run the FastAPI application:
+   ```
+   uvicorn main:app --host 0.0.0.0 --port 8000
+   ```
+   Access the backend at ```http://localhost:8000.```
 
