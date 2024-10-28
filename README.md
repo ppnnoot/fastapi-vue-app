@@ -75,8 +75,15 @@ If you encounter issues running the application with Docker, you can run the bac
 - Click "Upload" to send the file to the backend for processing.
 - After successful upload, the data will be displayed on the frontend.
 
-2. API Endpoints:
+2. Download File:
+- Make sure the data has been uploaded or any necessary information (such as timestamp) has been added.
+- Click "Download" to initiate the file creation process.
+- The frontend will send a JSON request to the backend to process and generate an Excel file.
+- The backend will respond with the generated Excel file, which will then be saved to your Desktop.
+
+3. API Endpoints:
 - ```POST /uploadfile``` : Accepts file uploads in ```.csv``` or ```.xlsx``` format.
-- Use Postman or similar tools to test API endpoints directly if needed.
+- ```GET /docs``` Access the FastAPI-generated documentation, which provides a complete overview of available endpoints and expected data formats. This is a convenient way to test and interact with the API directly.
+- You can also use tools like Postman to test API endpoints if needed.
 
 
